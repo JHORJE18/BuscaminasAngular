@@ -1,0 +1,10 @@
+td, th {
+    width: 20px;
+    height: 20px;
+}
+
+.contenido {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
