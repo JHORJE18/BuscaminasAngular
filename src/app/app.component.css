@@ -1,10 +1,128 @@
-td, th {
+td {
+    background-color: red;
+    border: 2px solid white;
     width: 20px;
     height: 20px;
 }
 
-.contenido {
+#contenido {
     display: flex;
     justify-content: center;
     align-items: center;
 }
+
+/* Titulo neon */
+@font-face {
+    font-family: neon;
+    src: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/707108/neon.ttf);
+  }
+  
+  .container {
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+  }
+  
+  .neon {
+    font-family: neon;
+    color: #FB4264;
+    font-size: 9vw;
+    line-height: 9vw;
+    text-shadow: 0 0 3vw #F40A35;
+  }
+  
+  .flux {
+    font-family: neon;
+    color: #426DFB;
+    font-size: 9vw;
+    line-height: 9vw;
+    text-shadow: 0 0 3vw #2356FF;
+  }
+  
+  .neon {
+    animation: neon 1s ease infinite;
+    -moz-animation: neon 1s ease infinite;
+    -webkit-animation: neon 1s ease infinite;
+  }
+  
+  @keyframes neon {
+    0%,
+    100% {
+      text-shadow: 0 0 1vw #FA1C16, 0 0 3vw #FA1C16, 0 0 10vw #FA1C16, 0 0 10vw #FA1C16, 0 0 .4vw #FED128, .5vw .5vw .1vw #806914;
+      color: #FED128;
+    }
+    50% {
+      text-shadow: 0 0 .5vw #800E0B, 0 0 1.5vw #800E0B, 0 0 5vw #800E0B, 0 0 5vw #800E0B, 0 0 .2vw #800E0B, .5vw .5vw .1vw #40340A;
+      color: #806914;
+    }
+  }
+  
+  .flux {
+    animation: flux 2s linear infinite;
+    -moz-animation: flux 2s linear infinite;
+    -webkit-animation: flux 2s linear infinite;
+    -o-animation: flux 2s linear infinite;
+  }
+  
+  @keyframes flux {
+    0%,
+    100% {
+      text-shadow: 0 0 1vw #1041FF, 0 0 3vw #1041FF, 0 0 10vw #1041FF, 0 0 10vw #1041FF, 0 0 .4vw #8BFDFE, .5vw .5vw .1vw #147280;
+      color: #28D7FE;
+    }
+    50% {
+      text-shadow: 0 0 .5vw #082180, 0 0 1.5vw #082180, 0 0 5vw #082180, 0 0 5vw #082180, 0 0 .2vw #082180, .5vw .5vw .1vw #0A3940;
+      color: #146C80;
+    }
+  }
+  
+
+/* Button Llamativo */
+.btnInicio::before, .btnInicio::after {
+    position: absolute;
+    content: '';
+    transition: all 0.5s;
+  }
+  .btnInicio {
+    display: inline-block;
+    padding: 20px 40px;
+    color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    vertical-align: middle;
+    font-size: 4em;
+    transition: all 0.5s;
+    background-color: #426DFB;
+  }
+  .btnInicio::before {
+    bottom: -15px;
+    height: 15px;
+    width: 100%;
+    left: 8px;
+    transform: skewX(45deg);
+    background-color: #1041FF;
+  }
+  .btnInicio::after {
+    right: -15px;
+    height: 100%;
+    width: 15px;
+    bottom: -8px;
+    transform: skewY(45deg);
+    background-color: rgb(13, 53, 212);
+  }
+  .btnInicio:active {
+    margin-left: 10px;
+    margin-top: 10px;
+  }
+  .btnInicio:active::before {
+    bottom: -5px;
+    height: 5px;
+    left: 3px;
+  }
+  .btnInicio:active::after {
+    right: -5px;
+    width: 5px;
+    bottom: -3px;
+  }  
