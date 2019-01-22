@@ -1,11 +1,6 @@
-td {
-    background-color: red;
-    border: 2px solid white;
-    width: 20px;
-    height: 20px;
-}
 
-#contenido {
+.contenido {
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;

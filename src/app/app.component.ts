@@ -39,8 +39,7 @@ export class AppComponent {
 
 			for (var c = 0; c< piezas; c++){
 				var columna = document.createElement('td');
-				columna.style = "background-color: red; border: 2px solid white; width: 20px; height: 20px;";
-
+				
 				fila.appendChild(columna);
 			}
 
