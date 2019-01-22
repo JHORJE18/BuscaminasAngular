@@ -15,6 +15,15 @@ export class AppComponent {
 	// Link
 	@ViewChild('contenido') contenedor: ElementRef;
 	@ViewChild('btnIniciar') btnIniciar: ElementRef;
+	@ViewChild('configuracion') panelConfiguracion: ElementRef;
+
+	/**
+	 * Muestra la configuración inicial del juego
+	 */
+	MostrarConfiguracion(){
+		this.btnIniciar.nativeElement.style.visibility = "hidden";	
+		this.panelConfiguracion.nativeElement.style.visibility = "visible";
+	}
 
 	StartGameEvent() {
 		var name = prompt("Introduce tu nombre");

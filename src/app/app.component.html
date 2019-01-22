@@ -1,11 +1,27 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center; padding:50px;">
-    <span class="neon">Busca</span><span class="flux">minas</span>
-</div>
-
-<button class="btnInicio" #btnIniciar (click)="StartGameEvent()">Iniciar Juego</button>
+<button class="btnInicio" #btnIniciar (click)="MostrarConfiguracion()">Iniciar Juego</button>
 
 <div class="contenido" #contenido>
+</div>
+
+<div class="configuracion" #configuracion style="visibility:hidden">
+    <h1>Configuración</h1>
+    <hr>
+    <form class="form-wrapper">
+        <label>Selecciona la dificultad</label><br>
+        <div style="width:50%; margin: 0 auto;">
+            <div class="radio-group">
+                <input type="radio" id="option-one" name="selector" checked><label for="option-one">Facil</label>
+                <input type="radio" id="option-two" name="selector"><label for="option-two">Normal</label>
+                <input type="radio" id="option-three" name="selector"><label for="option-three">Dificil</label>
+            </div>
+        </div>
+        <label for="txtNombre" style="color:white">Nombre</label>
+        <input type="text" placeholder="Introduce tu nombre" name="txtNombre" id="txtNombre" />
+        <br>
+        <button style="margin:10px" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored"><i class="material-icons">check</i> Comenzar
+            partida</button>
+        <button style="margin:10px" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"><i class="material-icons">close</i> Cancelar</button>
+    </form>
 </div>
 
 <router-outlet></router-outlet>
