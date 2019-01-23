@@ -20,8 +20,8 @@ export class AppComponent {
 	/**
 	 * Muestra la configuración inicial del juego
 	 */
-	MostrarConfiguracion(){
-		this.btnIniciar.nativeElement.style.visibility = "hidden";	
+	MostrarConfiguracion() {
+		this.btnIniciar.nativeElement.style.visibility = "hidden";
 		this.panelConfiguracion.nativeElement.style.visibility = "visible";
 	}
 
@@ -36,6 +36,24 @@ export class AppComponent {
 	}
 
 	/**
+	 * 
+	 * @param {array} arrayPiezas 
+	 * @param {int} numBombas 
+	 */
+	colocarBombas(arrayPiezas, numBombas) {
+		let arrayMezclado = []
+
+		while (arrayPiezas.length > 0) {
+
+			let aleatorio = Math.floor((Math.random() * arrayPiezas.length));
+			arrayMezclado.push(arrayPiezas[aleatorio]);     // Crea copia
+			arrayPiezas.splice(aleatorio, 1);      // Elimina del array
+
+		}
+		return arrayMezclado;
+	}
+
+	/**
 	 * Metodo prepara la interfaz de la tabla
 	 * @param {int} piezas Recibe el número de piezas que se mostraran
 	 */
@@ -43,12 +61,12 @@ export class AppComponent {
 		var tableBase = document.createElement('table');
 		var tbody = document.createElement('tbody');
 
-		for (var i = 0; i<piezas; i++){
+		for (var i = 0; i < piezas; i++) {
 			var fila = document.createElement('tr');
 
-			for (var c = 0; c< piezas; c++){
+			for (var c = 0; c < piezas; c++) {
 				var columna = document.createElement('td');
-				
+
 				fila.appendChild(columna);
 			}
 
