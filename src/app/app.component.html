@@ -1,4 +1,4 @@
-<button class="btnInicio" #btnIniciar (click)="MostrarConfiguracion()">Iniciar Juego</button>
+<button class="btnInicio" #btnIniciar (click)="StartGameEvent()">Iniciar Juego</button>
 
 <div class="contenido" #contenido>
 </div>
@@ -18,7 +18,7 @@
         <label for="txtNombre" style="color:white">Nombre</label>
         <input type="text" placeholder="Introduce tu nombre" name="txtNombre" id="txtNombre" />
         <br>
-        <button style="margin:10px" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored"><i class="material-icons">check</i> Comenzar
+        <button (click)="StartGameEvent()" style="margin:10px" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored"><i class="material-icons">check</i> Comenzar
             partida</button>
         <button style="margin:10px" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"><i class="material-icons">close</i> Cancelar</button>
     </form>
