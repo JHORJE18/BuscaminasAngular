@@ -49,24 +49,24 @@ export class AppComponent {
 		}
 
 		// Inicializamos Array
-		var arrayPiezas = new Array(piezas)
+		var arrayPiezas = new Array(piezas);
 		arrayPiezas = colocarBombas(arrayPiezas, 5);
+		arrayPiezas = checkBombs(arrayPiezas, piezas);
+		console.log("RESULTADO");
 		console.log(arrayPiezas);
-
-
 
 		// Oculta botón Iniciar partida
 		this.btnIniciar.nativeElement.style.display = "none";
 
-		this.PreparePlantilla(piezas);
+		this.PreparePlantilla(arrayPiezas);
 	}
 
 	/**
 	 * Metodo prepara la interfaz de la tabla
-	 * @param {int} piezas Recibe el número de piezas que se mostraran
+	 * @param {array} arrayPiezas Recibe el número de piezas que se mostraran
 	 */
-	PreparePlantilla(piezas) {
-		let cuadrado = Math.sqrt(piezas);
+	PreparePlantilla(arrayPiezas) {
+		let cuadrado = Math.sqrt(arrayPiezas.length);
 
 		var tableBase = document.createElement('table');
 		var tbody = document.createElement('tbody');
@@ -78,7 +78,11 @@ export class AppComponent {
 			for (var c = 0; c < cuadrado; c++) {
 				var columna = document.createElement('td');
 				columna.id = "piece" + numPieza;
-
+				if (arrayPiezas[numPieza] == -1){
+					columna.textContent = "BOM";
+				} else {
+					columna.textContent = arrayPiezas[numPieza];
+				}
 				numPieza++;
 				fila.appendChild(columna);
 			}
@@ -88,35 +92,6 @@ export class AppComponent {
 		tableBase.appendChild(tbody);
 		this.contenedor.nativeElement.appendChild(tableBase);
 	}
-}
-
-/**
- * Metodo genera array de 2 dimensiones con el que se manipulara todo
- * @param numPiezas Recibe el número de piezas con las que se va a jugar
- * @returns {array} Array con valores 0 de dos dimensiones
- */
-function iniciarArray(numPiezas) {
-	// Calculamos cuadrado perfecto 
-	let cuadrado = Math.sqrt(numPiezas);
-
-	var nuevoArray = new Array(cuadrado);
-	//Bucle para meter en cada posición otros array de 10
-	for (var i = 0; i < numPiezas; i++) {
-		nuevoArray[i] = new Array(2);
-	}
-
-	console.log(nuevoArray);
-
-	// Genera cada posición de celda
-	for (let i = 0; i < numPiezas; i++) {
-		// Genera cada cordenada correspondiente
-		for (let c = 0; c < 2; c++) {
-			nuevoArray[i][c] = 0;
-		}
-	}
-
-	console.log(nuevoArray);
-	return nuevoArray;
 }
 
 /**
@@ -147,9 +122,7 @@ function colocarBombas(arrayPiezas, numBombas) {
 
 	// Colocar bombas
 	for (var i = 0; i < posicionesbombas.length; i++) {
-		var cordenadabomba = cordenadaPieza(posicionesbombas[i], arrayPiezas.length)
-		console.log("La posición " + posicionesbombas[i] + " corresponde a la posición " + cordenadabomba);
-		arrayPiezas[cordenadabomba[0]][cordenadabomba[1]] = -1;
+		arrayPiezas[posicionesbombas[i]] = -1;
 	}
 
 	return arrayPiezas;
@@ -178,35 +151,44 @@ function cordenadaPieza(numPieza, totalPiezas) {
 
 /**
  * EL metodo comprueba cuantas bombas hay alrededor de cada pieza y lo registra con un numero.
- * @param piezas (el array bidimensional que contiene las casillas donde hay una bomba)
- * @returns {Array[Piezas]} Devuelve un array de 2 dimensiones con todas los valores resultantes
+ * @param piezas Array con las piezzas
+ * @returns {Array} Devuelve un array de 2 dimensiones con todas los valores resultantes
  */
-function checkBombs(piezas) {
-	//He tardado como 6-7 minutos, si esto funciona me vuelvo creyente :3
+function checkBombs(arrayPiezas, numPiezas) {
+	// Comenzamos comprobación
+	let cuadrado = Math.sqrt(numPiezas);
 
-	for (var i = 0; i < piezas.lenght; i++) {
+	// Analizamos cada pieza 
+	for (var i = 0 ; i < arrayPiezas.length; i++){
+		var contadorBomba = 0;
 
-		for (var x = 0; x < piezas[i].lenght; x++) {
-			var counter;
-
-			if (piezas[i][x] != -1) {
-				if (piezas[i - 1][x] != undefined && piezas[i - 1][x] == -1) { counter++; }
-				if (piezas[i - 1][x + 1] != undefined && piezas[i - 1][x + 1] == -1) { counter++; }
-				if (piezas[i][x + 1] != undefined && piezas[i][x + 1] == -1) { counter++; }
-				if (piezas[i + 1][x + 1] != undefined && piezas[i + 1][x + 1] == -1) { counter++; }
-				if (piezas[i + 1][x] != undefined && piezas[i + 1][x] == -1) { counter++; }
-				if (piezas[i + 1][x - 1] != undefined && piezas[i + 1][x - 1] == -1) { counter++; }
-				if (piezas[i][x - 1] != undefined && piezas[i][x - 1] == -1) { counter++; }
-				if (piezas[i - 1][x - 1] != undefined && piezas[i - 1][x - 1] == -1) { counter++; }
-			} else {
-				counter = -1
-			}
-
-			piezas[i][x] = counter;
+		// Descartamos que sea bomba
+		if (arrayPiezas[i] != -1){
+			// No hay bomba bro
+			
+			// Izquierda
+			if (arrayPiezas[(i-1)] != undefined && arrayPiezas[(i-1)] == -1){ contadorBomba++ }
+			// Derecha
+			if (arrayPiezas[(i+1)] != undefined && arrayPiezas[(i+1)] == -1){ contadorBomba++ }
+			// Arriba
+			if (arrayPiezas[(i-cuadrado)] != undefined && arrayPiezas[(i-cuadrado)] == -1){ contadorBomba++ }
+			// Arriba Izquierda
+			if (arrayPiezas[(i-cuadrado-1)] != undefined && arrayPiezas[(i-cuadrado-1)] == -1){ contadorBomba++ }
+			// Arriba Derecha
+			if (arrayPiezas[(i-cuadrado+1)] != undefined && arrayPiezas[(i-cuadrado+1)] == -1){ contadorBomba++ }
+			// Abajo
+			if (arrayPiezas[(i+cuadrado)] != undefined && arrayPiezas[(i+cuadrado)] == -1){ contadorBomba++ }
+			// Abajo Izquierda
+			if (arrayPiezas[(i+cuadrado-1)] != undefined && arrayPiezas[(i+cuadrado-1)] == -1){ contadorBomba++ }
+			// Abajo Derecha
+			if (arrayPiezas[(i+cuadrado+1)] != undefined && arrayPiezas[(i+cuadrado+1)] == -1){ contadorBomba++ }
+		} else {
+			// Es la bomba :O
+			contadorBomba = -1;
 		}
 
-
+		arrayPiezas[i] = contadorBomba;
 	}
 
-	return piezas;
+	return arrayPiezas;
 }
