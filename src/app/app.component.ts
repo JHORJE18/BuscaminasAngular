@@ -57,4 +57,46 @@ export class AppComponent {
 		tableBase.appendChild(tbody);
 		this.contenedor.nativeElement.appendChild(tableBase);
 	}
+
+	
+
+}
+
+
+/**
+ * 
+ * @param piezas (el array bidimensional que contiene las casillas donde hay una bomba)
+ * EL metodo comprueba cuantas bombas hay alrededor de cada pieza y lo registra con un numero.
+ */
+function checkBombs (piezas){
+	//He tardado como 6-7 minutos, si esto funciona me vuelvo creyente :3
+
+	for(var i=0; i<piezas.lenght; i++){
+
+		for(var x=0; x<piezas[i].lenght; x++){
+			var counter;
+
+			if(piezas[i][x] != -1){
+				if(piezas[i-1][x] != undefined && piezas[i-1][x] == -1){counter++;}
+				if(piezas[i-1][x+1] != undefined && piezas[i-1][x+1] == -1){counter++;}
+				if(piezas[i][x+1] != undefined && piezas[i][x+1] == -1){counter++;}
+				if(piezas[i+1][x+1] != undefined && piezas[i+1][x+1] == -1){counter++;}
+				if(piezas[i+1][x] != undefined && piezas[i+1][x] == -1){counter++;}
+				if(piezas[i+1][x-1] != undefined && piezas[i+1][x-1] == -1){counter++;}
+				if(piezas[i][x-1] != undefined && piezas[i][x-1] == -1){counter++;}
+				if(piezas[i-1][x-1] != undefined && piezas[i-1][x-1] == -1){counter++;}
+			}else{
+
+				counter = -1
+
+			}
+
+			piezas[i][x] = counter;
+		}
+	
+
+	}
+
+	return piezas;
+
 }
