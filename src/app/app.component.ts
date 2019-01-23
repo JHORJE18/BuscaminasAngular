@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 
+let arrayPiezzasGlobal;
 
 @Component({
 	selector: 'app-root',
@@ -55,6 +56,9 @@ export class AppComponent {
 		console.log("RESULTADO");
 		console.log(arrayPiezas);
 
+		// Guardamos partida actual en Global (Para acceder desde el Controladorcelda)
+		arrayPiezzasGlobal = arrayPiezas;
+
 		// Oculta botón Iniciar partida
 		this.btnIniciar.nativeElement.style.display = "none";
 
@@ -78,11 +82,9 @@ export class AppComponent {
 			for (var c = 0; c < cuadrado; c++) {
 				var columna = document.createElement('td');
 				columna.id = "piece" + numPieza;
-				if (arrayPiezas[numPieza] == -1) {
-					columna.textContent = "BOM";
-				} else {
-					columna.textContent = arrayPiezas[numPieza];
-				}
+				columna.addEventListener("click", ControladorCelda);
+				columna.addEventListener("contextmenu", ControladorCelda);
+
 				numPieza++;
 				fila.appendChild(columna);
 			}
@@ -218,4 +220,27 @@ function checkBombs(arrayPiezas, numPiezas) {
 	}
 
 	return arrayPiezas;
+}
+
+/**
+ * Controlador de la piezza con sus metodos y comprobaciones
+ */
+function ControladorCelda(){
+	console.log(this.id);
+	// Obtenemos número de la pieza
+	let numeroPieza = this.id.replace("piece","");
+
+	// Realizamos comprobaciones
+	if (arrayPiezzasGlobal[numeroPieza] == -1){
+		// BOMBA
+		this.textContent = "BOOM";
+		this.style.backgroundColor = "Red";
+	} else {
+		this.textContent = arrayPiezzasGlobal[numeroPieza];
+		this.style.backgroundColor = "Green";
+	}
+
+	// Quitamos propiedad click
+	this.removeEventListener("click", ControladorCelda);
+	this.removeEventListener("contextmenu", ControladorCelda);
 }
