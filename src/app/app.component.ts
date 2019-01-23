@@ -11,6 +11,7 @@ export class AppComponent {
 	title = 'BuscaminasAngular';
 	name = "";
 	contenido: String = "";
+	arrayPiezas = [[], []]
 
 	// Link
 	@ViewChild('contenido') contenedor: ElementRef;
@@ -20,8 +21,8 @@ export class AppComponent {
 	/**
 	 * Muestra la configuración inicial del juego
 	 */
-	MostrarConfiguracion(){
-		this.btnIniciar.nativeElement.style.visibility = "hidden";	
+	MostrarConfiguracion() {
+		this.btnIniciar.nativeElement.style.visibility = "hidden";
 		this.panelConfiguracion.nativeElement.style.visibility = "visible";
 	}
 
@@ -36,19 +37,42 @@ export class AppComponent {
 	}
 
 	/**
+	 * 
+	 * @param {array} arrayPiezas 
+	 * @param {int} numBombas 
+	 */
+	colocarBombas(arrayPiezas, numBombas) {
+		let arrayMezclado = []
+
+		while (arrayPiezas.length > 0) {
+
+			let aleatorio = Math.floor((Math.random() * arrayPiezas.length));
+			arrayMezclado.push(arrayPiezas[aleatorio]);     // Crea copia
+			arrayPiezas.splice(aleatorio, 1);      // Elimina del array
+
+		}
+		return arrayMezclado;
+	}
+
+	/**
 	 * Metodo prepara la interfaz de la tabla
 	 * @param {int} piezas Recibe el número de piezas que se mostraran
 	 */
 	PreparePlantilla(piezas) {
+		let cuadrado = Math.sqrt(piezas);
+
 		var tableBase = document.createElement('table');
 		var tbody = document.createElement('tbody');
+		var numPieza = 0;
 
-		for (var i = 0; i<piezas; i++){
+		for (var i = 0; i < cuadrado; i++) {
 			var fila = document.createElement('tr');
 
-			for (var c = 0; c< piezas; c++){
+			for (var c = 0; c < cuadrado; c++) {
 				var columna = document.createElement('td');
-				
+				columna.id = "piece" + numPieza;
+
+				numPieza++;
 				fila.appendChild(columna);
 			}
 
@@ -58,8 +82,26 @@ export class AppComponent {
 		this.contenedor.nativeElement.appendChild(tableBase);
 	}
 
-	
+}
 
+/**
+ * Metodo devuelve en que cordenada se encuentra una pieza
+ * @param {int} numPieza Número de la pieza del puzzle
+ * @param {int} totalPiezas Número total de piezzas del puzle
+ * @returns {array} Número Fila x Columna-
+ */
+function cordenadaPieza(numPieza, totalPiezas) {
+    let cuadrado = Math.sqrt(totalPiezas);
+
+    // Calculamos la fila y la columna
+    let fila = Math.round(numPieza / cuadrado);
+    let columna = Math.round(numPieza % cuadrado);
+
+    let posicion = [];
+    posicion[0] = fila;   // FILA ~ Alto
+    posicion[1] = columna;   // COLUMNA ~ Ancho
+
+    return posicion;
 }
 
 
