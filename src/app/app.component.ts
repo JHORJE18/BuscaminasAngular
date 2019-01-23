@@ -30,7 +30,7 @@ export class AppComponent {
 		// Obtenemos valores del Nombre y la dificultad seleccionada
 		// TODO: Cargar valores y no usar uno predeteminado
 		var nombre = "Jorge";
-		var dificultad = 1;
+		var dificultad = 2;
 		var piezas;
 
 		switch (dificultad) {
@@ -78,7 +78,7 @@ export class AppComponent {
 			for (var c = 0; c < cuadrado; c++) {
 				var columna = document.createElement('td');
 				columna.id = "piece" + numPieza;
-				if (arrayPiezas[numPieza] == -1){
+				if (arrayPiezas[numPieza] == -1) {
 					columna.textContent = "BOM";
 				} else {
 					columna.textContent = arrayPiezas[numPieza];
@@ -159,29 +159,56 @@ function checkBombs(arrayPiezas, numPiezas) {
 	let cuadrado = Math.sqrt(numPiezas);
 
 	// Analizamos cada pieza 
-	for (var i = 0 ; i < arrayPiezas.length; i++){
+	for (var i = 0; i < arrayPiezas.length; i++) {
 		var contadorBomba = 0;
 
 		// Descartamos que sea bomba
-		if (arrayPiezas[i] != -1){
+		if (arrayPiezas[i] != -1) {
 			// No hay bomba bro
-			
+			var izquierda: boolean = true, derecha: boolean = true, arriba: boolean = true, abajo: boolean = true;
+
+			// Habilitamos izquierda ?
+			if (Math.floor(i / cuadrado) != Math.floor((i - 1) / cuadrado)) {
+				izquierda = false;
+				console.log("#" + i + " Izquierda desactivado\n" + Math.floor(i / cuadrado) + " vs " + Math.floor((i - 1) / cuadrado));
+			}
+
+			// Habilitamos derecha ?
+			if (Math.floor(i / cuadrado) != Math.floor((i + 1) / cuadrado)) {
+				derecha = false;
+				console.log("#" + i + " Derecha desactivado\n" + Math.floor(i / cuadrado) + " vs " + Math.floor((i + 1) / cuadrado));
+			}
+
+			// Habilitamos arriba ?
+			if ((i - cuadrado) == undefined) {
+				arriba = false;
+				console.log("#" + i + " Arriba desactivado");
+			}
+
+			// Habilitamos abajo ?
+			if ((i + cuadrado) == undefined) {
+				abajo = false;
+				console.log("#" + i + " Abajo desactivado");
+			}
+
+			// Checkea en todas las direcciones habilitadas
+
 			// Izquierda
-			if (arrayPiezas[(i-1)] != undefined && arrayPiezas[(i-1)] == -1){ contadorBomba++ }
+			if (izquierda && arrayPiezas[(i - 1)] == -1) { contadorBomba++ }
 			// Derecha
-			if (arrayPiezas[(i+1)] != undefined && arrayPiezas[(i+1)] == -1){ contadorBomba++ }
+			if (derecha && arrayPiezas[(i + 1)] == -1) { contadorBomba++ }
 			// Arriba
-			if (arrayPiezas[(i-cuadrado)] != undefined && arrayPiezas[(i-cuadrado)] == -1){ contadorBomba++ }
+			if (arriba && arrayPiezas[(i - cuadrado)] == -1) { contadorBomba++ }
 			// Arriba Izquierda
-			if (arrayPiezas[(i-cuadrado-1)] != undefined && arrayPiezas[(i-cuadrado-1)] == -1){ contadorBomba++ }
+			if (arriba && izquierda && arrayPiezas[(i - cuadrado - 1)] == -1) { contadorBomba++ }
 			// Arriba Derecha
-			if (arrayPiezas[(i-cuadrado+1)] != undefined && arrayPiezas[(i-cuadrado+1)] == -1){ contadorBomba++ }
+			if (arriba && derecha && arrayPiezas[(i - cuadrado + 1)] == -1) { contadorBomba++ }
 			// Abajo
-			if (arrayPiezas[(i+cuadrado)] != undefined && arrayPiezas[(i+cuadrado)] == -1){ contadorBomba++ }
+			if (abajo && arrayPiezas[(i + cuadrado)] == -1) { contadorBomba++ }
 			// Abajo Izquierda
-			if (arrayPiezas[(i+cuadrado-1)] != undefined && arrayPiezas[(i+cuadrado-1)] == -1){ contadorBomba++ }
+			if (abajo && izquierda && arrayPiezas[(i + cuadrado - 1)] == -1) { contadorBomba++ }
 			// Abajo Derecha
-			if (arrayPiezas[(i+cuadrado+1)] != undefined && arrayPiezas[(i+cuadrado+1)] == -1){ contadorBomba++ }
+			if (abajo && derecha && arrayPiezas[(i + cuadrado + 1)] == -1) { contadorBomba++ }
 		} else {
 			// Es la bomba :O
 			contadorBomba = -1;
