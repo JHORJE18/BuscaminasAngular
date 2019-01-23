@@ -5,6 +5,15 @@
 	align-items: center;
 }
 
+.botonera {
+	background-color: rgb(200, 200, 200);
+	width: 100%;
+	bottom: 0;
+	position: fixed;
+	text-align: center;
+	border-top: 2px solid white;
+}
+
 .configuracion {
 	width: 50%;
 	height: 50%;

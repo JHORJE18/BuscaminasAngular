@@ -10,7 +10,9 @@ let arrayPiezzasGlobal;
 export class AppComponent {
 	// Variables
 	title = 'BuscaminasAngular';
-	name = "";
+	namePlayer = "George";
+	scorePlayer = "0";
+	timePlayer = "00:00";
 	contenido: String = "";
 	arrayPiezas = [];
 
@@ -18,6 +20,7 @@ export class AppComponent {
 	@ViewChild('contenido') contenedor: ElementRef;
 	@ViewChild('btnIniciar') btnIniciar: ElementRef;
 	@ViewChild('configuracion') panelConfiguracion: ElementRef;
+	@ViewChild('botonera') panelBotonera: ElementRef;
 
 	/**
 	 * Muestra la configuración inicial del juego
@@ -28,6 +31,9 @@ export class AppComponent {
 	}
 
 	StartGameEvent() {
+		this.panelConfiguracion.nativeElement.style.visibility = "hidden";
+		this.panelBotonera.nativeElement.style.visibility = "visible";
+
 		// Obtenemos valores del Nombre y la dificultad seleccionada
 		// TODO: Cargar valores y no usar uno predeteminado
 		var nombre = "Jorge";

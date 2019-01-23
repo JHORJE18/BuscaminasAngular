@@ -1,4 +1,4 @@
-<button class="btnInicio" #btnIniciar (click)="StartGameEvent()">Iniciar Juego</button>
+<button class="btnInicio" #btnIniciar (click)="MostrarConfiguracion()">Iniciar Juego</button>
 
 <div class="contenido" #contenido>
 </div>
@@ -17,11 +17,19 @@
         </div>
         <label for="txtNombre" style="color:white">Nombre</label>
         <input type="text" placeholder="Introduce tu nombre" name="txtNombre" id="txtNombre" />
-        <br>
-        <button (click)="StartGameEvent()" style="margin:10px" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored"><i class="material-icons">check</i> Comenzar
-            partida</button>
-        <button style="margin:10px" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"><i class="material-icons">close</i> Cancelar</button>
     </form>
+    <br>
+    <button (click)="StartGameEvent()" style="margin:10px" class="mdl-button  mdl-button--raised mdl-button--colored"><i
+            class="material-icons">check</i> Comenzar
+        partida</button>
+    <button style="margin:10px" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent"><i
+            class="material-icons">close</i> Cancelar</button>
+</div>
+
+<div #botonera class="botonera" style="visibility:hidden">
+    <h4 style="float: left; margin-left: 20px">Jugador: <b>{{ namePlayer }}</b></h4>
+    <h4 style="display: inline-block;">Puntuación: <b>{{ scorePlayer }}</b></h4>
+    <h4 style="float: right; margin-right: 20px">Tiempo: <b>{{ timePlayer }}</b></h4>
 </div>
 
 <router-outlet></router-outlet>
