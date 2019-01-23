@@ -37,24 +37,6 @@ export class AppComponent {
 	}
 
 	/**
-	 * 
-	 * @param {array} arrayPiezas 
-	 * @param {int} numBombas 
-	 */
-	colocarBombas(arrayPiezas, numBombas) {
-		let arrayMezclado = []
-
-		while (arrayPiezas.length > 0) {
-
-			let aleatorio = Math.floor((Math.random() * arrayPiezas.length));
-			arrayMezclado.push(arrayPiezas[aleatorio]);     // Crea copia
-			arrayPiezas.splice(aleatorio, 1);      // Elimina del array
-
-		}
-		return arrayMezclado;
-	}
-
-	/**
 	 * Metodo prepara la interfaz de la tabla
 	 * @param {int} piezas Recibe el número de piezas que se mostraran
 	 */
@@ -85,21 +67,55 @@ export class AppComponent {
 }
 
 /**
+ * Metodo realiza la colocación aleatoria de las bombas
+ * @param {array} arrayPiezas 
+ * @param {int} numBombas 
+ */
+function colocarBombas(arrayPiezas, numBombas) {
+
+	// Generar posicones de bombas
+	var posicionesbombas = [];
+	for (var i = 0; i < numBombas; i++) {
+		let aleatorio = -1;
+		var valido = false;
+
+		while (!valido) {
+			aleatorio = Math.floor((Math.random() * arrayPiezas.length));
+
+			if (!posicionesbombas.includes(aleatorio)) {
+				valido = true;
+			}
+		}
+
+		posicionesbombas.push(aleatorio);
+	}
+
+	// Colocar bombas
+	for (var i = 0; i < posicionesbombas.length; i++) {
+		var cordenadabomba = cordenadaPieza(posicionesbombas[i],arrayPiezas.length)
+
+		arrayPiezas[cordenadabomba[0]][cordenadabomba[1]] = -1;
+	}
+
+	return arrayPiezas;
+}
+
+/**
  * Metodo devuelve en que cordenada se encuentra una pieza
  * @param {int} numPieza Número de la pieza del puzzle
  * @param {int} totalPiezas Número total de piezzas del puzle
  * @returns {array} Número Fila x Columna-
  */
 function cordenadaPieza(numPieza, totalPiezas) {
-    let cuadrado = Math.sqrt(totalPiezas);
+	let cuadrado = Math.sqrt(totalPiezas);
 
-    // Calculamos la fila y la columna
-    let fila = Math.round(numPieza / cuadrado);
-    let columna = Math.round(numPieza % cuadrado);
+	// Calculamos la fila y la columna
+	let fila = Math.round(numPieza / cuadrado);
+	let columna = Math.round(numPieza % cuadrado);
 
-    let posicion = [];
-    posicion[0] = fila;   // FILA ~ Alto
-    posicion[1] = columna;   // COLUMNA ~ Ancho
+	let posicion = [];
+	posicion[0] = fila;   // FILA ~ Alto
+	posicion[1] = columna;   // COLUMNA ~ Ancho
 
-    return posicion;
+	return posicion;
 }
