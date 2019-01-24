@@ -10,9 +10,10 @@ let arrayPiezzasGlobal;
 export class AppComponent {
 	// Variables
 	title = 'BuscaminasAngular';
-	namePlayer = "George";
+	namePlayer = "Sin nombre";
 	scorePlayer = "0";
 	timePlayer = "00:00";
+	dificultadPlayer = 0;
 	contenido: String = "";
 	arrayPiezas = [];
 
@@ -30,14 +31,10 @@ export class AppComponent {
 		this.panelConfiguracion.nativeElement.style.visibility = "visible";
 	}
 
-	StartGameEvent() {
+	StartGameEvent(dificultad:number) {
 		this.panelConfiguracion.nativeElement.style.visibility = "hidden";
 		this.panelBotonera.nativeElement.style.visibility = "visible";
 
-		// Obtenemos valores del Nombre y la dificultad seleccionada
-		// TODO: Cargar valores y no usar uno predeteminado
-		this.namePlayer = "George_Loco";
-		var dificultad = 1;
 		var piezas;
 
 		switch (dificultad) {
@@ -89,6 +86,8 @@ export class AppComponent {
 				var columna = document.createElement('td');
 				columna.id = "piece" + numPieza;
 				columna.addEventListener("click", ControladorCelda);
+				columna.style.backgroundImage = "url(\"assets/Mario/Bloque1.gif\")"
+				columna.style.backgroundSize = "contain";
 
 				numPieza++;
 				fila.appendChild(columna);
@@ -238,11 +237,36 @@ function ControladorCelda() {
 	// Realizamos comprobaciones
 	if (arrayPiezzasGlobal[numeroPieza] == -1) {
 		// BOMBA
-		this.textContent = "BOOM";
-		this.style.backgroundColor = "Red";
+		let listadoBombas = [];
+
+		// Posiciones de las bombas
+		for (let b = 0; b < arrayPiezzasGlobal.length; b++) {
+			// Sacar las piezas donde hay bomba realmente
+			if (arrayPiezzasGlobal[b] == -1) {
+				listadoBombas.push(b);
+			}
+		}
+
+		// Aplicar bomba a las piezas
+		for (let a = 0; a < listadoBombas.length; a++) {
+			document.getElementById("piece" + listadoBombas[a]).style.backgroundImage = "url(\"assets/Mario/explosion.gif\")";
+			document.getElementById("piece" + listadoBombas[a]).style.backgroundSize = "contain";
+		}
+
+		// Eliminar todos los click
+		let celdas = document.getElementsByTagName("td");
+		for (let i = 0; i < celdas.length; i++) {
+			celdas[i].removeEventListener("click", ControladorCelda);
+		}
+
+		// Fin
+		document.getElementsByClassName("neon")[0].textContent = "Has";
+		document.getElementsByClassName("flux")[0].textContent = "Perdido";		
 	} else {
 		this.textContent = arrayPiezzasGlobal[numeroPieza];
-		this.style.backgroundColor = "Green";
+		this.style.backgroundImage = "url(\"assets/Mario/bloque2.png\")"
+		this.style.backgroundSize = "contain";
+		this.style.fontSize = "2em";
 	}
 
 	// Quitamos propiedad click
