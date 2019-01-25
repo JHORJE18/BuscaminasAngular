@@ -1,6 +1,8 @@
 import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 
 let arrayPiezzasGlobal;
+let numPiezasDescubiertas;
+let scorePlayer = 0;
 
 @Component({
 	selector: 'app-root',
@@ -31,30 +33,34 @@ export class AppComponent {
 		this.panelConfiguracion.nativeElement.style.visibility = "visible";
 	}
 
-	StartGameEvent(dificultad:number) {
+	StartGameEvent(dificultad: number) {
 		this.panelConfiguracion.nativeElement.style.visibility = "hidden";
 		this.panelBotonera.nativeElement.style.visibility = "visible";
 
 		var piezas;
+		var bombas;
 
 		switch (dificultad) {
 			case 0:
 				// Facil
-				piezas = 16;
+				piezas = 25;
+				bombas = 5;
 				break;
 			case 1:
 				// Normal
-				piezas = 25;
+				piezas = 49;
+				bombas = 7;
 				break;
 			case 2:
 				// Dificil
-				piezas = 36;
+				piezas = 64;
+				bombas = 10;
 				break;
 		}
 
 		// Inicializamos Array
 		var arrayPiezas = new Array(piezas);
-		arrayPiezas = this.colocarBombas(arrayPiezas, 5);
+		arrayPiezas = this.colocarBombas(arrayPiezas, bombas);
 		arrayPiezas = this.checkBombs(arrayPiezas, piezas);
 		console.log("RESULTADO");
 		console.log(arrayPiezas);
@@ -234,19 +240,19 @@ function ControladorCelda() {
 	// Obtenemos número de la pieza
 	let numeroPieza = this.id.replace("piece", "");
 
+	// BOMBA
+	let listadoBombas = [];
+
+	// Posiciones de las bombas
+	for (let b = 0; b < arrayPiezzasGlobal.length; b++) {
+		// Sacar las piezas donde hay bomba realmente
+		if (arrayPiezzasGlobal[b] == -1) {
+			listadoBombas.push(b);
+		}
+	}
+
 	// Realizamos comprobaciones
 	if (arrayPiezzasGlobal[numeroPieza] == -1) {
-		// BOMBA
-		let listadoBombas = [];
-
-		// Posiciones de las bombas
-		for (let b = 0; b < arrayPiezzasGlobal.length; b++) {
-			// Sacar las piezas donde hay bomba realmente
-			if (arrayPiezzasGlobal[b] == -1) {
-				listadoBombas.push(b);
-			}
-		}
-
 		// Aplicar bomba a las piezas
 		for (let a = 0; a < listadoBombas.length; a++) {
 			document.getElementById("piece" + listadoBombas[a]).style.backgroundImage = "url(\"assets/Mario/explosion.gif\")";
@@ -261,12 +267,23 @@ function ControladorCelda() {
 
 		// Fin
 		document.getElementsByClassName("neon")[0].textContent = "Has";
-		document.getElementsByClassName("flux")[0].textContent = "Perdido";		
+		document.getElementsByClassName("flux")[0].textContent = "Perdido";
 	} else {
+		scorePlayer+= arrayPiezzasGlobal[numeroPieza] * 2;
+		document.getElementById("puntuacion").textContent = "Puntuación: " + scorePlayer;	
+
 		this.textContent = arrayPiezzasGlobal[numeroPieza];
 		this.style.backgroundImage = "url(\"assets/Mario/bloque2.png\")"
 		this.style.backgroundSize = "contain";
 		this.style.fontSize = "2em";
+
+		// Comprobamos que ha ganado
+		if (numPiezasDescubiertas == (arrayPiezzasGlobal.length - listadoBombas.length)){
+			// Ya ha ganado
+			document.getElementsByClassName("neon")[0].textContent = "Has";
+			document.getElementsByClassName("flux")[0].textContent = "Ganado";	
+			document.getElementById("puntuacion").innerHTML = "Fin | " + scorePlayer;	
+		}
 	}
 
 	// Quitamos propiedad click
