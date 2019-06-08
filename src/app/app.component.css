@@ -1,3 +1,4 @@
+/*
 .contenido {
 	width: 100%;
 	display: flex;
@@ -27,7 +28,7 @@
 	padding: 10px;
 }
 
-/* Button Llamativo */
+ Button Llamativo 
 
 .btnInicio::before, .btnInicio::after {
 	position: absolute;
@@ -87,3 +88,5 @@
 .btnInicio:hover {
 	cursor: pointer
 }
+
+*/
