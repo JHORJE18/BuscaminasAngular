@@ -12,6 +12,9 @@ export class GameComponent implements OnInit {
 
   // General Game
   public arrayPiezzas: any[] = [];
+  public cuadrado: number = 2;
+  public listaCeldas: any[] = [];
+  public revelado: number = 0;
   constructor() { }
 
   ngOnInit() {
@@ -22,8 +25,22 @@ export class GameComponent implements OnInit {
     // Preparamos posiciones para bombas
     let posicionesBombas: number[] = this.posicionesBombas(this.numPiezas, this.numBombas);
     this.arrayPiezzas = this.prepararCampo(this.numPiezas, posicionesBombas);
+    this.cuadrado = Math.sqrt(this.numPiezas)
 
     // TODO: Generar pantalla
+    let numPiezaTEMP = 0;
+    for (let i = 0; i < this.cuadrado ; i++) {
+      let fila = [];
+
+      for (let a = 0; a < this.cuadrado ; a++) {
+        let celda = {numPieza: numPiezaTEMP, numBomba: this.arrayPiezzas[numPiezaTEMP]}
+        fila.push(celda)
+        numPiezaTEMP++;
+      }
+
+      this.listaCeldas.push(fila)
+    }
+    console.log('LISTO', this.listaCeldas)
   }
 
   /**
@@ -132,6 +149,20 @@ export class GameComponent implements OnInit {
 
     console.log('Checkeo bombas finalizado', tablero);
     return tablero;
+  }
+
+  notificacion(event:any) {
+    console.log('Aviso recibido de parte de la bomba '+ event.piece)
+    // Era bomba ?
+    if (event.numero == -1) {
+      alert('Has perdido amigo PUMBA')
+    } else {
+
+      // Comprueba si ya ha ganado
+      this.revelado++;
+
+      if (this.revelado == (this.numPiezas - this.numBombas)) alert('Has ganado!')
+    }
   }
 
   /**

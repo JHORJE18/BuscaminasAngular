@@ -1,0 +1,30 @@
+
+
+.picture{
+    cursor: pointer;
+    outline: none;
+    background-repeat: no-repeat;
+    background-size: cover;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: white;
+    width: 50px;
+    height: 50px;
+}
+
+.picture_selected{
+    outline: none;
+    background-repeat: no-repeat;
+    background-size: cover;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: white;
+    width: 50px;
+    height: 50px;
+}
+.numberBomb, i{
+    font-size: 3em;
+    line-height: normal;
+}

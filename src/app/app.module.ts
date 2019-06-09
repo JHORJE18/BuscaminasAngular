@@ -6,13 +6,15 @@ import { AppComponent } from './app.component';
 import { GameComponent } from './components/game/game.component';
 import { HeaderComponent } from './components/header/header.component';
 import { PrincipalPageComponent } from './pages/principal-page/principal-page.component';
+import { PiezaComponent } from './components/pieza/pieza.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     GameComponent,
     HeaderComponent,
-    PrincipalPageComponent
+    PrincipalPageComponent,
+    PiezaComponent
   ],
   imports: [
     BrowserModule,

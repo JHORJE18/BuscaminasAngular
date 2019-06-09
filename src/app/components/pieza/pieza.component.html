@@ -1,0 +1,4 @@
+<div (click)="revelarPieza()" (contextmenu)="posibleBomba()" class="{{styleShow}}" [ngStyle]="{'background-image': 'url(' + imagenShow + ')'}">
+  <div class="numberBomb" *ngIf="showNumber">{{numBomba}}</div>
+  <i *ngIf="mostrarBandera" class="material-icons">flag</i>
+</div>

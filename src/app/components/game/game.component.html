@@ -1,3 +1,7 @@
-<p>
-  game works!
-</p>
+<table>
+  <tr *ngFor="let fila of listaCeldas">
+    <td *ngFor="let celda of fila">
+        <app-pieza (notificar)="notificacion($event)" [numBomba]="celda.numBomba" [numPieza]="celda.numPieza"></app-pieza>
+    </td>
+  </tr>
+</table>
