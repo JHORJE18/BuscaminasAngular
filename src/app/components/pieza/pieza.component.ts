@@ -11,11 +11,11 @@ export class PiezaComponent implements OnInit {
   @Input() public numPieza: number
   @Output() public notificar = new EventEmitter<any>();
 
-  private mostrarBandera: boolean = false;
-  private showNumber: boolean = false;
-  private pressed: boolean = false;
-  private styleShow: string = 'picture';
-  private imagenShow: string = '../../../assets/Mario/Bloque1.gif';
+  mostrarBandera: boolean = false;
+  showNumber: boolean = false;
+  pressed: boolean = false;
+  styleShow: string = 'picture';
+  imagenShow: string = '../../../assets/Mario/Bloque1.gif';
   constructor() { }
 
   ngOnInit() {

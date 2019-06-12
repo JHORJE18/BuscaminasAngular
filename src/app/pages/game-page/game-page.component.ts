@@ -7,9 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GamePageComponent implements OnInit {
 
-  private numeroPiezas: number = 0;
-  private numeroBombas: number = 0;
-  private play: boolean = false;
+  numeroPiezas: number = 0;
+  numeroBombas: number = 0;
+  play: boolean = false;
   constructor() { }
 
   ngOnInit() {
