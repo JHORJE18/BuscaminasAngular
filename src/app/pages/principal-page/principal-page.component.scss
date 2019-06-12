@@ -1,4 +1,4 @@
-Button Llamativo 
+@import url('https://fonts.googleapis.com/css?family=Ubuntu&display=swap');
 
 .btnInicio::before, .btnInicio::after {
 	position: absolute;
@@ -11,10 +11,12 @@ Button Llamativo
 	padding: 20px 40px;
 	color: white;
 	position: absolute;
+	font-family: 'Ubuntu', sans-serif;
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
 	vertical-align: middle;
+	line-height: 50px;
 	font-size: 4em;
 	transition: all 0.5s;
 	background-color: #426DFB;

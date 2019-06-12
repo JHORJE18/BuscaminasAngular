@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
 
 @Component({
   selector: "app-game",
@@ -9,6 +9,7 @@ export class GameComponent implements OnInit {
   // Variables
   @Input() private numPiezas: number;
   @Input() private numBombas: number;
+  @Output() public exit = new EventEmitter<any>();
 
   // General Game
   public arrayPiezzas: any[] = [];
@@ -19,6 +20,10 @@ export class GameComponent implements OnInit {
 
   ngOnInit() {
     this.prepararTablero()
+   }
+
+   back() {
+    this.exit.emit(true)
    }
 
   private prepararTablero() {

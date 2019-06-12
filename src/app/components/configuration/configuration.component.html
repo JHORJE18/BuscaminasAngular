@@ -1,0 +1,31 @@
+<div class="row">
+  <div class="col-2 col-lg"></div>
+  <div class="col">
+    <div class="title animated fadeInUp"><i class="material-icons" [routerLink]="[ '' ]">chevron_left</i>&nbsp; <span>Nueva partida</span>
+    </div>
+    <div class="card animated jackInTheBox">
+      <div class="card-body">
+        <form class="row">
+          <div class="form-group col">
+            <label for="exampleInputEmail1">Nombre:</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+              placeholder="Escribe tu nombre">
+            <small id="emailHelp" class="form-text text-muted">El nombre se usara para las puntuaciones.</small>
+          </div>
+          <div class="form-group col">
+            <label for="exampleInputEmail1">Correo:</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+              placeholder="Escribe tu correo">
+            <small id="emailHelp" class="form-text text-muted">Se necesita una dirección de correo válida.</small>
+          </div>
+        </form>
+      </div>
+      <div (click)="iniciarPartida()" class="button_primary">
+        <div>
+          Iniciar partida
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-2 col-lg"></div>
+</div>

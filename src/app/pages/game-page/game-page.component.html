@@ -1,1 +1,3 @@
-<app-game [numPiezas]="49" [numBombas]="7"></app-game>
+
+<app-configuration *ngIf="!play" (start)="startGame($event)"></app-configuration>
+<app-game *ngIf="play" (exit)="exitGame($event)" [numPiezas]="numeroPiezas" [numBombas]="numeroBombas"></app-game>

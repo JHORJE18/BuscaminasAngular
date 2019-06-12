@@ -1,0 +1,57 @@
+@import url("https://fonts.googleapis.com/css?family=Ubuntu&display=swap");
+
+.card {
+  color: #233a5d;
+  border-radius: 15px;
+  padding-bottom: 60px;
+}
+
+.button_primary {
+  cursor: pointer;
+  outline: none;
+  position: absolute;
+  width: auto;
+  right: -1px;
+  left: -1px;
+  bottom: -1px;
+  transition: 500ms;
+
+  div {
+    position: relative;
+    padding: 10px;
+    text-align: center;
+    font-size: 35px;
+    font-family: "Ubuntu", sans-serif;
+    font-weight: bold;
+    top: 10px;
+    margin: auto;
+    text-transform: uppercase;
+    text-anchor: 5px;
+  }
+
+  height: 60px;
+  background-color: royalblue;
+  color: #fff;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+
+.button_primary:hover {
+  transition: 500ms;
+  background-color: rgb(240, 240, 240);
+  color: royalblue;
+  border-top: 2px solid royalblue;
+}
+
+.title {
+  cursor: pointer;
+  color: white;
+  font-size: 22px;
+  margin-bottom: 20px;
+}
+
+span {
+  vertical-align: text-top;
+}
+
+/* TEXT OUTLINED */
