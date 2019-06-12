@@ -3,7 +3,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 @Component({
   selector: 'app-pieza',
   templateUrl: './pieza.component.html',
-  styleUrls: ['./pieza.component.css']
+  styleUrls: ['./pieza.component.scss']
 })
 export class PiezaComponent implements OnInit {
 

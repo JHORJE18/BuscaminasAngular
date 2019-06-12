@@ -7,6 +7,9 @@ import { GameComponent } from './components/game/game.component';
 import { HeaderComponent } from './components/header/header.component';
 import { PrincipalPageComponent } from './pages/principal-page/principal-page.component';
 import { PiezaComponent } from './components/pieza/pieza.component';
+import { GamePageComponent } from './pages/game-page/game-page.component';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { AboutMeComponent } from './pages/about-me/about-me.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +17,10 @@ import { PiezaComponent } from './components/pieza/pieza.component';
     GameComponent,
     HeaderComponent,
     PrincipalPageComponent,
-    PiezaComponent
+    PiezaComponent,
+    GamePageComponent,
+    NotFoundComponent,
+    AboutMeComponent
   ],
   imports: [
     BrowserModule,
