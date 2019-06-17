@@ -8,8 +8,8 @@ import { MDCTextField } from '@material/textfield';
 })
 export class ConfigurationComponent implements OnInit {
 
-  private name: string = "";
-  private email: string = "";
+  public name: string = "";
+  public email: string = "";
   private numPiezas: number = 0;
   private numBombas: number = 0;
   private btnFacilClass: string = 'activated';

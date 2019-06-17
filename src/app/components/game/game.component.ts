@@ -9,6 +9,8 @@ export class GameComponent implements OnInit {
   // Variables
   @Input() private numPiezas: number;
   @Input() private numBombas: number;
+  @Input() private username: string;
+  @Input() private puntuacion: number;
   @Output() public exit = new EventEmitter<any>();
 
   // General Game
@@ -16,14 +18,11 @@ export class GameComponent implements OnInit {
   public cuadrado: number = 2;
   public listaCeldas: any[] = [];
   public revelado: number = 0;
-
-  public username: string = 'JHORJE18';
-  public puntuacion: string = '18';
-  public timeGame: string = '00:20';
+  public timeGame: string = '00:00';
   constructor() { }
 
   ngOnInit() {
-    console.log('Preparando tablero', this.numPiezas, this.numBombas)
+    console.log('Preparando tablero', this.username, this.puntuacion)
     this.prepararTablero()
    }
 
