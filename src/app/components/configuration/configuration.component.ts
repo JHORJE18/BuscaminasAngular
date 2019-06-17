@@ -12,6 +12,9 @@ export class ConfigurationComponent implements OnInit {
   private email: string = "";
   private numPiezas: number = 0;
   private numBombas: number = 0;
+  private btnFacilClass: string = 'activated';
+  private btnMedioClass: string = 'no-activated';
+  private btnDificilClass: string = 'no-activated';
   @Output() public start = new EventEmitter<any>();
   constructor() { }
 
@@ -19,8 +22,35 @@ export class ConfigurationComponent implements OnInit {
   }
 
   iniciarPartida() {
-    this.numPiezas = 25;
-    this.numBombas = 5;
     this.start.emit({ start: true, name: this.name, email: this.email, numPiezas: this.numPiezas, numBombas: this.numBombas })
+  }
+
+  setDificultad(valor: number) {
+    switch (valor) {
+      case 1:
+        // Facil
+        this.numBombas = 5;
+        this.numPiezas = 25;
+        this.btnFacilClass = 'bounceIn activated'
+        this.btnMedioClass = 'no-activated'
+        this.btnDificilClass = 'no-activated'
+        break;
+      case 2:
+        // Medio
+        this.numBombas = 7;
+        this.numPiezas = 49;
+        this.btnFacilClass = 'no-activated'
+        this.btnMedioClass = 'bounceIn activated'
+        this.btnDificilClass = 'no-activated'
+        break;
+      case 3:
+        // Dificil
+        this.numBombas = 10;
+        this.numPiezas = 64;
+        this.btnFacilClass = 'no-activated'
+        this.btnMedioClass = 'no-activated'
+        this.btnDificilClass = 'bounceIn activated'
+        break;
+    }
   }
 }

@@ -19,6 +19,7 @@ export class GameComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    console.log('Preparando tablero', this.numPiezas, this.numBombas)
     this.prepararTablero()
    }
 

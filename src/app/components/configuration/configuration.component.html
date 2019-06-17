@@ -1,22 +1,32 @@
 <div class="row">
-  <div class="col-2 col-lg"></div>
+  <div class="col-1 col-md-2 col-lg-3"></div>
   <div class="col">
-    <div class="title animated fadeInUp"><i class="material-icons" [routerLink]="[ '' ]">chevron_left</i>&nbsp; <span>Nueva partida</span>
+    <div class="title animated fadeInUp no_select"><i class="material-icons"
+        [routerLink]="[ '' ]">chevron_left</i>&nbsp; <span>Nueva partida</span>
     </div>
     <div class="card animated jackInTheBox">
       <div class="card-body">
         <form class="row">
-          <div class="form-group col">
+          <div class="form-group col-12 col-md">
             <label for="exampleInputEmail1">Nombre:</label>
             <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
               placeholder="Escribe tu nombre">
             <small id="emailHelp" class="form-text text-muted">El nombre se usara para las puntuaciones.</small>
           </div>
-          <div class="form-group col">
+          <div class="form-group col-12 col-md">
             <label for="exampleInputEmail1">Correo:</label>
             <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
               placeholder="Escribe tu correo">
             <small id="emailHelp" class="form-text text-muted">Se necesita una dirección de correo válida.</small>
+          </div>
+          <div class="form-group col-12">
+            <div class="row">
+              <div class="col-1 col-md"></div>
+              <button class="col animated {{btnFacilClass}}" (click)="setDificultad(1)">Facil</button>
+              <button class="col animated {{btnMedioClass}}" (click)="setDificultad(2)">Medio</button>
+              <button class="col animated {{btnDificilClass}}" (click)="setDificultad(3)">Dificil</button>
+              <div class="col-1 col-md"></div>
+            </div>
           </div>
         </form>
       </div>
@@ -27,5 +37,5 @@
       </div>
     </div>
   </div>
-  <div class="col-2 col-lg"></div>
+  <div class="col-1 col-md-2 col-lg-3"></div>
 </div>

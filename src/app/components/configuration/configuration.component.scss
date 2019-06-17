@@ -54,4 +54,25 @@ span {
   vertical-align: text-top;
 }
 
+.activated {
+  margin: 5px;
+  padding: 10px 30px;
+  background-color: royalblue;
+  border-radius: 25px;
+  border: 0px solid black;
+  color: white;
+  transition: 500ms;
+  outline: none;
+}
+
+.no-activated {
+  margin: 5px;
+  padding: 10px 30px;
+  background-color: transparent;
+  border-radius: 25px;
+  border: 1px solid royalblue;
+  transition: 500ms;
+  outline: none;
+}
+
 /* TEXT OUTLINED */
