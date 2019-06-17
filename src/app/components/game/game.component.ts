@@ -16,6 +16,10 @@ export class GameComponent implements OnInit {
   public cuadrado: number = 2;
   public listaCeldas: any[] = [];
   public revelado: number = 0;
+
+  public username: string = 'JHORJE18';
+  public puntuacion: string = '18';
+  public timeGame: string = '00:20';
   constructor() { }
 
   ngOnInit() {

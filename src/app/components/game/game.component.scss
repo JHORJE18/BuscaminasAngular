@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:900&display=swap');
+
 .title {
   cursor: pointer;
   color: white;
@@ -21,4 +23,21 @@ td {
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   font-weight: bold;
   size: 5em;
+}
+
+.card{
+  margin-top: 25px;
+  color: #2e2e2e;
+  background-color: #cecece;
+  border-radius: 12px;
+  font-family: "Roboto", sans-serif;
+  text-align: left;
+  padding: 20px;
+  font-size: 20px;
+
+  b{
+    font-size: 18px;
+    margin-top: 15px;
+    color: royalblue
+  }
 }

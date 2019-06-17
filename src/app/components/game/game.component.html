@@ -1,6 +1,7 @@
 <div class="row">
   <div class="col-1 col-md-2 col-lg"></div>
-  <div class="col title animated fadeInUp"><i class="material-icons" (click)="back()">chevron_left</i>&nbsp; <span>Salir</span>
+  <div class="col title animated fadeInUp"><i class="material-icons" (click)="back()">chevron_left</i>&nbsp;
+    <span>Salir</span>
   </div>
   <div class="col-1 col-md-2 col-lg"></div>
 </div>
@@ -12,3 +13,14 @@
     </td>
   </tr>
 </table>
+<div class="row">
+  <div class="col-1 col-md-2 col-lg"></div>
+  <div class="col card animated bounceInUp">
+    <div class="row">
+      <div class="col">Jugador: <br><b>{{username}}</b></div>
+      <div class="col">Puntuación: <br><b>{{puntuacion}}</b></div>
+      <div class="col">Tiempo: <br><b>{{timeGame}}</b></div>
+    </div>
+  </div>
+  <div class="col-1 col-md-2 col-lg"></div>
+</div>
