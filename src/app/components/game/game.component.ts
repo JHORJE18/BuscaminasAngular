@@ -7,10 +7,10 @@ import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
 })
 export class GameComponent implements OnInit {
   // Variables
-  @Input() private numPiezas: number;
-  @Input() private numBombas: number;
-  @Input() private username: string;
-  @Input() private puntuacion: number;
+  @Input() numPiezas: number;
+  @Input() numBombas: number;
+  @Input() username: string;
+  @Input() puntuacion: number;
   @Output() public exit = new EventEmitter<any>();
 
   // General Game
@@ -164,7 +164,7 @@ export class GameComponent implements OnInit {
     console.log('Aviso recibido de parte de la bomba '+ event.piece)
     // Era bomba ?
     if (event.numero == -1) {
-      alert('Has perdido amigo PUMBA')
+      console.log('LOSER')
     } else {
 
       // Comprueba si ya ha ganado

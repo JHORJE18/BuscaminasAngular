@@ -1,5 +1,4 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { MDCTextField } from '@material/textfield';
 
 @Component({
   selector: 'app-configuration',
@@ -8,13 +7,13 @@ import { MDCTextField } from '@material/textfield';
 })
 export class ConfigurationComponent implements OnInit {
 
-  public name: string = "";
-  public email: string = "";
-  private numPiezas: number = 0;
-  private numBombas: number = 0;
-  private btnFacilClass: string = 'activated';
-  private btnMedioClass: string = 'no-activated';
-  private btnDificilClass: string = 'no-activated';
+  public name: String = '';
+  public email: String = '';
+  private numPiezas: Number = 0;
+  private numBombas: Number = 0;
+  btnFacilClass: String = 'activated';
+  btnMedioClass: String = 'no-activated';
+  btnDificilClass: String = 'no-activated';
   @Output() public start = new EventEmitter<any>();
   constructor() { }
 
