@@ -9,14 +9,13 @@
         <form class="row">
           <div class="form-group col-12 col-md">
             <label for="exampleInputEmail1">Nombre de usuario:</label>
-            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-              placeholder="Escribe el nombre de usuario">
-            <small id="emailHelp" class="form-text text-muted">El nombre de usuario se usara para las puntuaciones.</small>
+            <input [(ngModel)]="formUsername" name="formUsername" type="text" class="form-control" placeholder="Escribe el nombre de usuario">
+            <small id="emailHelp" class="form-text text-muted">El nombre de usuario se usara para las
+              puntuaciones.</small>
           </div>
           <div class="form-group col-12 col-md">
             <label for="exampleInputEmail1">Correo:</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-              placeholder="Escribe tu correo">
+            <input [(ngModel)]="formEmail" name="formEmail" type="email" class="form-control" placeholder="Escribe tu correo">
             <small id="emailHelp" class="form-text text-muted">Se necesita una dirección de correo válida.</small>
           </div>
           <div class="form-group col-12">

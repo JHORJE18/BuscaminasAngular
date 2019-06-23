@@ -7,8 +7,8 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 })
 export class ConfigurationComponent implements OnInit {
 
-  public name: String = '';
-  public email: String = '';
+  public formUsername: String = '';
+  public formEmail: String = '';
   private numPiezas: Number = 0;
   private numBombas: Number = 0;
   btnFacilClass: String = 'activated';
@@ -18,10 +18,11 @@ export class ConfigurationComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    this.setDificultad(1)
   }
 
   iniciarPartida() {
-    this.start.emit({ start: true, name: this.name, email: this.email, numPiezas: this.numPiezas, numBombas: this.numBombas })
+    this.start.emit({ start: true, name: this.formUsername, email: this.formEmail, numPiezas: this.numPiezas, numBombas: this.numBombas })
   }
 
   setDificultad(valor: number) {

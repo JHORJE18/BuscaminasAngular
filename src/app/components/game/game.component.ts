@@ -166,7 +166,8 @@ export class GameComponent implements OnInit {
     if (event.numero == -1) {
       console.log('LOSER')
     } else {
-
+      this.puntuacion += event.numero;
+      
       // Comprueba si ya ha ganado
       this.revelado++;
 
